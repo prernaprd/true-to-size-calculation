@@ -1,0 +1,16 @@
+{
+  "port": 9090,
+  "version" : "v1.0",
+  "basePath" : "/api",
+  "logEnable": true,
+  "apiKey": "5521fd95-be25-46fe-b3ca-d03f3fa5c0ef",
+  "pgSql" : {
+    "user" : "puser",
+    "database" : "products", 
+    "password" : "a6XtypLo", 
+    "host" : "database",
+    "port" : 5632, 
+    "max" : 50,
+    "idleTimeoutMillis" : 10000
+  }
+}

@@ -1,0 +1,17 @@
+#To create base image for node.js and npm
+FROM node:13.8.0
+
+# Set directory for the application files
+WORKDIR /app
+COPY package.json /app
+
+# 1. Get test packages; AND
+# 2. Install our test framework - mocha
+RUN npm install && \
+    npm install -g mocha
+
+# Copy the application files
+COPY . /app
+
+# Override the command, to run the test instead of the application
+CMD ["mocha", "test/productsTest.js", "--timeout", "15000", "--exit"]

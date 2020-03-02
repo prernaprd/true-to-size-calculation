@@ -1,0 +1,36 @@
+{
+  "ER_400" : {
+  	"errorCode": 400,
+  	"description":"Bad Request"
+  },
+  "ER_404" : {
+  	"errorCode": 404,
+  	"description":"Resource doesn't exist"
+  },
+  "ER_403" : {
+  	"errorCode": 403,
+  	"description" : "Permission denied"
+  },
+  "ER_500" : {
+  	"errorCode": 500,
+  	"description": "Internal Server Error"
+  },
+  "ER_FOREIGN_KEY_VIOLATION" : {
+  	"description": "Violates foreign key constraint"
+  },
+  "ER_CHECK_VIOLATION" : {
+    "description": "Violates check constraint"
+  },
+  "ER_MISSING_MANDATORY_FIELD" : {
+  	"description": "Missing mandatory field"
+  },
+  "ER_INVALID_VALUE" : {
+  	"description": "Valid value is"
+  },
+  "ER_DATABASE_CONNECTION" : {
+  	"description": "Unable to connect to database"
+  },
+  "ER_DATABASE_QUERY" : {
+  	"description": "Error in performing database query"
+  }
+}

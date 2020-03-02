@@ -1,0 +1,107 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: Products Information
+  description:
+    Provide API to retrieve products information.
+basePath: /v1.0
+schemes:
+  - http
+paths:
+  /products/{pid}/true-to-size:
+    post:
+      summary: Add a new true to size information for the product and return the product details with calculated true to size value.
+      parameters:
+        - name: pid
+          in: path
+          type: string
+          required: true
+          description: The unique identification associated with the product.  
+        - name: x-api-key
+          in: header
+          description: The api key to validate machine to machine authentication.
+          required: true
+          type: string              
+        - name: products
+          in: body
+          description: Product true to size information.
+          required: true
+          schema:
+            $ref: "#/definitions/products"
+      responses:
+        "200":
+          description: The product true to size information is created succesfully.
+          schema:
+            $ref: "#/definitions/products"
+        "400":
+          description: Invalid input.
+          schema:
+            $ref: "#/definitions/errorInfo"
+        "404":
+          description: The product information is not found.             
+        "500":
+          description: Unable to process the request due to error in the system.
+          schema:
+            $ref: "#/definitions/serverErrorInfo"
+          
+definitions:  
+  products:
+    type: object
+    required:
+      - trueToSize
+    properties:
+      pid:
+        description: The unique identification associated with the product.
+        type: integer
+        readOnly: true
+      brand:
+        description: The brand of the product.
+        type: string
+        readOnly: true  
+      name:
+        description: The name of the brand.
+        type: string
+        readOnly: true    
+      trueToSize:
+        description: The true size fit for the user.
+        type: integer
+        minimum: 1
+        maximum: 5                  
+      calculatedTrueToSize:
+        description: The average of all the true to size data provided for the product.
+        type: number
+        readOnly: true       
+            
+  errorInfo:
+    type: array
+    items:
+      properties:
+        value:
+          description: The invalid value of the attribute.
+        param:
+          description: The attribute name associated with the error.
+          type: string
+        msg:
+          description: Contextual description of the error.
+          type: string
+        location:
+          description: The location of the field.
+          type: string
+          enum:
+            - params
+            - body
+            - query         
+        
+  serverErrorInfo:
+    type: object
+    properties:
+      errorCode:
+        description: The error code.
+        type: integer
+      description:
+        description: Contextual description of the error.
+        type: string
+        enum:
+          - Unable to connect to database
+          - Error in performing database query
+ 

@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  database_test:
+    container_name: database_test
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: p6utyAio
+      POSTGRES_USER: puser_test
+      POSTGRES_DB: products_test
+    ports: 
+     - '5432:5432'
+    volumes:
+        - ./init-test.sql:/docker-entrypoint-initdb.d/init-test.sql
+  api_test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: services_test
+    image: api_test
+    environment: 
+      NODE_ENV: test
+    ports: 
+     - '9000:9000'
+    depends_on: 
+      - database_test
