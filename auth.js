@@ -1,8 +1,10 @@
+const errorMessage = require('./utils/errorMessage');
 const config = require('config');
 const LOG = config.logEnable ? console.log.bind(console) : function(){};
 
 /**
- * Set access control header for the allowed method, origins, credentials and headers.
+ * @function allowHeaders
+ * @description Set access control header for the allowed method, origins, credentials and headers.
  * @param {Object} req - the http request.
  * @param {Object} res - the http response.
  * @param {function()} next - the function to be called on completion.
@@ -16,7 +18,8 @@ exports.allowHeaders = function(req, res, next) {
 }
 
 /**
- * Validate request based on api key.
+ * @function authentication
+ * @description Validate request based on api key.
  * @param {Object} req - the http request.
  * @param {Object} res - the http response.
  * @param {function()} next - the function to be called on completion.
@@ -33,6 +36,6 @@ exports.authentication = function(req, res, next) {
   }
   else {
     LOG(`Failed authentication for IP address: ${req.connection.remoteAddress}`);
-    res.sendStatus(403);
+    res.sendStatus(errorMessage.ER_403.errorCode);
   }
 }

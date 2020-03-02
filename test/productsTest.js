@@ -8,7 +8,8 @@ const pgSql = require('pg');
 chai.use(chaiHttp);
 
 /**
- * Prepare the database to original state to validate the test cases.
+ * @function prepareDbForTesting
+ * @description Prepare the database to original state to validate the test cases.
  * @param {function()} done - to be called on completion.
  */
 function prepareDbForTesting(done) {
@@ -18,7 +19,7 @@ function prepareDbForTesting(done) {
       throw err;
     }
     else {
-      pgClient.query('SELECT unit_test_func();', function(err, result) {
+      pgClient.query('SELECT unit_test_func();', function(err) {
         if(err) {
           throw err;
         }
@@ -47,7 +48,7 @@ describe('Products Unit and Integration test', function() {
   });
 
   describe('POST /v1.0/api/products/:pid/true-to-size with valid request and incorrect authorization', function() {
-    it('it should not insert any true size data for invalid api key', function(done) {
+    it('it should not insert any true-to-size data for invalid api key', function(done) {
       let sizeData = {};
 
       agent
@@ -61,7 +62,7 @@ describe('Products Unit and Integration test', function() {
   }); 
 
   describe('POST /v1.0/api/products/:pid/true-to-size with invalid request', function() {
-    it('it should not add true to size data for invalid true to size value', function(done) {
+    it('it should not add true-to-size data for invalid true to size value', function(done) {
       let sizeData = {"trueToSize": "invalidNumber"};
 
       agent
@@ -77,7 +78,7 @@ describe('Products Unit and Integration test', function() {
       });
     });
 
-    it('it should not add true to size data for missing true to size value', function(done) {
+    it('it should not add true-to-size data for missing true to size value', function(done) {
       let sizeData = {};
 
       agent
@@ -93,7 +94,7 @@ describe('Products Unit and Integration test', function() {
       });
     });
 
-    it('it should not add true to size data for invalid product id value', function(done) {
+    it('it should not add true-to-size data for invalid product id value', function(done) {
       let sizeData = {"trueToSize": 2};
       let invalidPid = "invalidNumber"
 
@@ -110,7 +111,7 @@ describe('Products Unit and Integration test', function() {
       });
     });
 
-    it('it should not add true to size data for invalid product id value', function(done) {
+    it('it should not add true-to-size data for invalid product id value which doesn not exist in system', function(done) {
       let sizeData = {"trueToSize": 2};
       let invalidPid = 3989;
 
@@ -136,7 +137,7 @@ describe('Products Unit and Integration test', function() {
       }, 10000);
     });
     
-    it('it should successfully add true to size data and get the product details with the calculated true to size', function(done) {
+    it('it should successfully add true-to-size data and get the product details with the calculated true-to-size', function(done) {
       let sizeData = {"trueToSize": 2};
 
       setTimeout(function(){
@@ -156,7 +157,7 @@ describe('Products Unit and Integration test', function() {
       }, 10000);
     });
 
-    it('it should successfully add true to size data and calculated true to size value should be correct average value of all tru to size data', function(done) {
+    it('it should successfully add true-to-size data and calculated true-to-size value should be correct average value of all true-to-size data', function(done) {
       let sizeData = {"trueToSize": 4};
 
       setTimeout(function(){

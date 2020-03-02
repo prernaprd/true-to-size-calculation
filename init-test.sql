@@ -29,7 +29,7 @@ CREATE UNIQUE INDEX products_brand_name_category_ukey ON products USING btree (b
 CREATE TABLE products_true_to_size (
   psid SERIAL PRIMARY KEY,
 	pid integer NOT NULL,
-	true_to_size integer NOT NULL CONSTRAINT size_range CHECK (true_to_size >= 1 AND true_to_size <= 1),
+	true_to_size integer NOT NULL CONSTRAINT size_range CHECK (true_to_size >= 1 AND true_to_size <= 5),
   created_at timestamp without time zone DEFAULT now()
 );
 	
@@ -54,18 +54,11 @@ INSERT INTO products(brand, name, category) VALUES ('Nike', 'Shox', 'Sneakers');
 -- Name: unit_test_func(); Type: FUNCTION; 
 --
 CREATE OR REPLACE FUNCTION unit_test_func() RETURNS void
-  LANGUAGE plpgsql
-  AS $$
+    LANGUAGE plpgsql
+    AS $$
 	BEGIN
 		-- Truncate and reset sequence in tables to restore to golden image for testing
 		TRUNCATE TABLE products_true_to_size;
 		ALTER SEQUENCE products_true_to_size_psid_seq RESTART;
-		TRUNCATE TABLE products;
-		ALTER SEQUENCE products_pid_seq RESTART;
-		-- insert master data in products table
-		INSERT INTO products(brand, name, category) VALUES ('Adidas', 'Yeezy', 'Sneakers');
-		INSERT INTO products(brand, name, category) VALUES ('Jordan', 'Retro', 'Sneakers');
-		INSERT INTO products(brand, name, category) VALUES ('Nike', 'Kyrie', 'Sneakers');
-		INSERT INTO products(brand, name, category) VALUES ('Nike', 'Shox', 'Sneakers');
 	END;
 $$;

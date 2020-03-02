@@ -29,7 +29,7 @@ CREATE UNIQUE INDEX products_brand_name_category_ukey ON products USING btree (b
 CREATE TABLE products_true_to_size (
   psid SERIAL PRIMARY KEY,
 	pid integer NOT NULL,
-	true_to_size integer NOT NULL CONSTRAINT size_range CHECK (true_to_size >= 1 AND true_to_size <= 1),
+	true_to_size integer NOT NULL CONSTRAINT size_range CHECK (true_to_size >= 1 AND true_to_size <= 5),
   created_at timestamp without time zone DEFAULT now()
 );
 	

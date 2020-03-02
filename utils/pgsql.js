@@ -16,7 +16,8 @@ types.setTypeParser(PGSQL_DECIMAL_OID, function(stringValue) {
 });
 
 /**
- * Connect with Postgres database and execute query.
+ * @function executeQuery
+ * @description Connect with Postgres database and execute query.
  * @param {Object} res - the response object.
  * @param {string} query - the query to be executed.
  * @param {*[]} values - array of values for parameters in query.
@@ -49,7 +50,8 @@ exports.executeQuery = function(res, query, values, next) {
 }
 
 /**
- * Parse the error object in the standard format.
+ * @function parseQueryError
+ * @description Parse the error object in the standard format.
  * @param {Object} error - the error object sent after exeuting query.
  * @returns {Object} - the parsed error object.
  */
