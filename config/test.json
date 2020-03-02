@@ -9,7 +9,7 @@
     "database" : "products_test", 
     "password" : "p6utyAio", 
     "host" : "database_test",
-    "port" : 5432, 
+    "port" : 5432,
     "max" : 10,
     "idleTimeoutMillis" : 10000
   }

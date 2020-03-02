@@ -9,7 +9,7 @@
     "database" : "products", 
     "password" : "a6XtypLo", 
     "host" : "database",
-    "port" : 5632, 
+    "port" : 5432, 
     "max" : 50,
     "idleTimeoutMillis" : 10000
   }

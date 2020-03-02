@@ -61,7 +61,7 @@ describe('Products Unit and Integration test', function() {
     });
   }); 
 
-  describe('POST /v1.0/api/products/:pid/true-to-size with invalid request', function() {
+  describe('POST /v1.0/api/products/:pid/true-to-size to perform schema validations', function() {
     it('it should not add true-to-size data for invalid true to size value', function(done) {
       let sizeData = {"trueToSize": "invalidNumber"};
 
@@ -110,25 +110,9 @@ describe('Products Unit and Integration test', function() {
         done();
       });
     });
-
-    it('it should not add true-to-size data for invalid product id value which doesn not exist in system', function(done) {
-      let sizeData = {"trueToSize": 2};
-      let invalidPid = 3989;
-
-      agent
-      .post(`/v1.0/api/products/${invalidPid}/true-to-size`)
-      .set('x-api-key', config.apiKey)
-      .send(sizeData)
-      .end(function(err,res) {
-        res.should.have.status(400);
-        res.body.errors[0].param.should.equal('pid');
-        res.body.errors[0].msg.should.equal('Violates foreign key constraint');
-        done();
-      });
-    });
   }); 
 
-  describe('POST /v1.0/api/products/:pid/true-to-size with valid request and correct authorization', function() {
+  describe('POST /v1.0/api/products/:pid/true-to-size with database integration', function() {
     before(function(done){
       setTimeout(function(){
         prepareDbForTesting(function () {
@@ -137,6 +121,24 @@ describe('Products Unit and Integration test', function() {
       }, 10000);
     });
     
+    it('it should not add true-to-size data for invalid product id value which doesn not exist in system', function(done) {
+      let sizeData = {"trueToSize": 2};
+      let invalidPid = 3989;
+      
+      setTimeout(function(){
+        agent
+        .post(`/v1.0/api/products/${invalidPid}/true-to-size`)
+        .set('x-api-key', config.apiKey)
+        .send(sizeData)
+        .end(function(err,res) {
+          res.should.have.status(400);
+          res.body.errors[0].param.should.equal('pid');
+          res.body.errors[0].msg.should.equal('Violates foreign key constraint');
+          done();
+        }, 10000);
+      });
+    });
+
     it('it should successfully add true-to-size data and get the product details with the calculated true-to-size', function(done) {
       let sizeData = {"trueToSize": 2};
 
