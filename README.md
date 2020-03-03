@@ -10,7 +10,7 @@ App requires [Docker](https://www.docker.com/products/docker-desktop), [Git](htt
 1. Clone or download from https://github.com/prernaprd/true-to-size-calculation
 2. Navigate to the path where file is downloaded in Terminal: cd <path>
 3. Make sure previous containers are shut down: docker-compose down --remove-orphans
-4. Remove previous images: docker rmi <image>
+4. Remove previous images(api, postgres) if exists: docker rmi <image>
 5. To start the container and keep running in background: docker-compose up -d
 6. Run the API through Postman as per `routes/products.yml`. 
     Eg: URL: http://localhost:9090/v1.0/api/products/1/true-to-size
@@ -29,7 +29,7 @@ App requires [Docker](https://www.docker.com/products/docker-desktop) and [Git](
 1. Clone or download from https://github.com/prernaprd/true-to-size-calculation
 2. Navigate to the path where file is downloaded in Terminal: cd <path>
 3. Make sure previous containers are shut down: docker-compose down --remove-orphans
-4. Remove previous images: docker rmi <image>
+4. Remove previous images(api_test, postgres) if exists: docker rmi <image>
 5. To start the container and run the mocha tests: docker-compose -f docker-compose-test.yml up
 6. After using shut down the container: docker-compose down --remove-orphans 
 ```
