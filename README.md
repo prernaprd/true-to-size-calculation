@@ -1,6 +1,6 @@
 # True-to-Size Calculation
 
-A true-to-size calculation is a Node.js app using [Express 4](http://expressjs.com/) framework to calculate true-to-size data based on crowd sourcing. 
+A true-to-size calculation is a [Node.js](https://nodejs.org/en/) app using [Express 4](http://expressjs.com/) framework to calculate true-to-size data based on crowd sourcing. 
 
 ## Running using Docker <Environment: production>
 
