@@ -3,6 +3,8 @@ FROM node:13.8.0
 
 # Set directory for the application files
 WORKDIR /app
+
+#Copy package.json in working directory
 COPY package.json /app
 
 # Download the required packages for production

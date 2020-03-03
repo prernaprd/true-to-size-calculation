@@ -1,10 +1,10 @@
-# products
+# True-to-Size Calculation
 
-A products Node.js app using [Express 4](http://expressjs.com/).
+A true-to-size calculation is a Node.js app using [Express 4](http://expressjs.com/) framework to calculate true-to-size data based on crowd sourcing. 
 
 ## Running using Docker <Environment: production>
 
-Make sure you have [Docker](https://www.docker.com/products/docker-desktop) and [PostgreSQL](https://www.postgresql.org/download/) installed.
+App requires [Docker](https://www.docker.com/products/docker-desktop), [Git](https://git-scm.com/downloads) and [Postman](https://www.postman.com/downloads/) installed.
 
 ```
 1. Clone or download from https://github.com/prernaprd/true-to-size-calculation
@@ -23,7 +23,7 @@ Make sure you have [Docker](https://www.docker.com/products/docker-desktop) and 
 
 ## Running using Docker <Environment: test>
 
-Make sure you have [Docker](https://www.docker.com/products/docker-desktop) installed.
+App requires [Docker](https://www.docker.com/products/docker-desktop) and [Git](https://git-scm.com/downloads) installed.
 
 ```
 1. Clone or download from https://github.com/prernaprd/true-to-size-calculation
@@ -32,29 +32,6 @@ Make sure you have [Docker](https://www.docker.com/products/docker-desktop) inst
 4. Remove previous images: docker rmi <image>
 5. To start the container and run the mocha tests: docker-compose -f docker-compose-test.yml up
 6. After using shut down the container: docker-compose down --remove-orphans 
-```
-
-## Running Application Locally <Environment: test>
-
-Make sure you have [Node.js](http://nodejs.org/) and [PostgreSQL](https://www.postgresql.org/download/) installed. [Postman] (https://www.postman.com/downloads/) can be used to make http request for the defined API's in the application. Set the Node environment variable as test.
-
-```
-1. Run in terminal to clone project: git clone https://github.com/prernaprd/true-to-size-calculation.git
-2. To initialize the node modules: npm install
-3. To start the application: npm start
-```
-
-Create database as per configuration in `config/test.json`. Run the commands in `init-test.sql` for setting up database schema. The app should now be running on localhost:9000. 
-Use Postman to perform http request and test the API's of the application.
-
-## Running Test Locally <Environment: test>
-
-Make sure you have [Node.js](http://nodejs.org/) and all the dependencies installed. Set the Node environment variable as test.
-
-```
-1. Run in terminal to clone project: git clone https://github.com/prernaprd/true-to-size-calculation.git
-2. To initialize the node modules: npm install
-3. To execute mocha test: mocha .\test --timeout 50000 --exit
 ```
 
 # Code Overview
