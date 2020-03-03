@@ -2,42 +2,59 @@
 
 A products Node.js app using [Express 4](http://expressjs.com/).
 
-## Running Application Locally
+## Running using Docker <Environment: production>
 
-Make sure you have [Node.js](http://nodejs.org/) and [PostgreSQL](https://www.postgresql.org/download/) installed. [Postman] (https://www.postman.com/downloads/) can be used to make http request for the defined API's in the application.
+Make sure you have [Docker](https://www.docker.com/products/docker-desktop) and [PostgreSQL](https://www.postgresql.org/download/) installed.
 
-```sh
-git clone https://github.com/prernaprd/products.git
-cd products
-npm install
-npm start
 ```
-
-Run the commands in `init-test.sql` for setting up database schema. The app should now be running on localhost:9000. 
-Use Postman to perform http request and test the API's of the application.
-
-## Running Test Locally
-
-Make sure you have [Node.js](http://nodejs.org/) and all the dependencies installed. 
-
-```sh
-git clone https://github.com/prernaprd/products.git
-cd products
-mocha .\test --timeout 50000 --exit
+1. Clone or download from https://github.com/prernaprd/true-to-size-calculation
+2. Navigate to the path where file is downloaded in Terminal: cd <path>
+3. Make sure previous containers are shut down: docker-compose down --remove-orphans
+4. Remove previous images: docker rmi <image>
+5. To start the container and keep running in background: docker-compose up -d
+6. Run the API through Postman as per `routes/products.yml`. 
+    Eg: URL: http://localhost:9090/v1.0/api/products/1/true-to-size
+        Header: x-api-key : <apiKey> (As per `config/production.js`); Content-Type: application/json
+        Method: POST
+        Body: {"trueToSize" : 1}
+7. To verify the logs: docker-compose logs
+8. After using shut down the container: docker-compose down --remove-orphans
 ```
 
 ## Running using Docker <Environment: test>
 
+Make sure you have [Docker](https://www.docker.com/products/docker-desktop) installed.
+
 ```
-cd <path where files are copied>/products
-docker-compose -f docker-compose-test.yml up -d
+1. Clone or download from https://github.com/prernaprd/true-to-size-calculation
+2. Navigate to the path where file is downloaded in Terminal: cd <path>
+3. Make sure previous containers are shut down: docker-compose down --remove-orphans
+4. Remove previous images: docker rmi <image>
+5. To start the container and run the mocha tests: docker-compose -f docker-compose-test.yml up
+6. After using shut down the container: docker-compose down --remove-orphans 
 ```
 
-## Running using Docker <Environment: production>
+## Running Application Locally <Environment: test>
 
-```sh
-cd <path where files are copied>/products
-docker-compose up
+Make sure you have [Node.js](http://nodejs.org/) and [PostgreSQL](https://www.postgresql.org/download/) installed. [Postman] (https://www.postman.com/downloads/) can be used to make http request for the defined API's in the application. Set the Node environment variable as test.
+
+```
+1. Run in terminal to clone project: git clone https://github.com/prernaprd/true-to-size-calculation.git
+2. To initialize the node modules: npm install
+3. To start the application: npm start
+```
+
+Create database as per configuration in `config/test.json`. Run the commands in `init-test.sql` for setting up database schema. The app should now be running on localhost:9000. 
+Use Postman to perform http request and test the API's of the application.
+
+## Running Test Locally <Environment: test>
+
+Make sure you have [Node.js](http://nodejs.org/) and all the dependencies installed. Set the Node environment variable as test.
+
+```
+1. Run in terminal to clone project: git clone https://github.com/prernaprd/true-to-size-calculation.git
+2. To initialize the node modules: npm install
+3. To execute mocha test: mocha .\test --timeout 50000 --exit
 ```
 
 # Code Overview
